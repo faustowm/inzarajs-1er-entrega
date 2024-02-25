@@ -21,7 +21,7 @@ function validarCantidad(cantidad) {
 // Nombre de usuario
 let nombreUsuario;
 do {
-    nombreUsuario = prompt("Bienvenidos a Inzara Aromas, ¿cuál es su nombre?");
+    nombreUsuario = prompt("Bienvenidos a Inzara Aromas, ¿Cuál es su nombre?");
 } while (!validarNombre(nombreUsuario));
 
 // Objeto que almacenará las cantidades de velas seleccionadas por el usuario
@@ -29,10 +29,10 @@ let velasSeleccionadas = {};
 
 // Ciclo 
 do {
-    let tipoVela = prompt("Elija qué tipo de velas necesita: Velas, Velitas, Velotas").toLowerCase();
+    let tipoVela = prompt(`${nombreUsuario}, elija qué tipo de velas necesita: Decorativas, Bandejas, Carameleras`).toLowerCase();
     
     // Validar el tipo de vela ingresado
-    if (tipoVela !== 'velas' && tipoVela !== 'velitas' && tipoVela !== 'velotas') {
+    if (tipoVela !== 'decorativas' && tipoVela !== 'bandejas' && tipoVela !== 'carameleras') {
         alert("¡Error! Por favor ingrese un tipo de vela válido.");
         continue; // Vuelve al inicio del bucle para que el usuario ingrese nuevamente el tipo de vela
     }
@@ -44,9 +44,13 @@ do {
 
     velasSeleccionadas[tipoVela] = parseInt(cantidadVela);
 
-    let agregarMas = confirm("¿Desea agregar más velas?");
-    if (!agregarMas) {
-        break; // Salir del bucle si el usuario no quiere agregar más velas
+    let agregarMas;
+    do {
+        agregarMas = prompt("¿Desea agregar más velas? (SI/NO)").toUpperCase();
+    } while (agregarMas !== "SI" && agregarMas !== "NO");
+
+    if (agregarMas === "NO") {
+        break; // Salir del bucle si el usuario no quiere agregar más velas.
     }
 } while (true);
 
@@ -54,11 +58,11 @@ do {
 let costoTotal = 0;
 for (let tipo in velasSeleccionadas) {
     if (velasSeleccionadas.hasOwnProperty(tipo)) {
-        if (tipo === 'velas') {
+        if (tipo === 'decorativas') {
             costoTotal += 500 * velasSeleccionadas[tipo];
-        } else if (tipo === 'velitas') {
+        } else if (tipo === 'bandejas') {
             costoTotal += 900 * velasSeleccionadas[tipo];
-        } else if (tipo === 'velotas') {
+        } else if (tipo === 'carameleras') {
             costoTotal += 1500 * velasSeleccionadas[tipo];
         }
     }
