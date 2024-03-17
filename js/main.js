@@ -1,3 +1,44 @@
+// Objeto - Tipos de velas y precios
+const preciosVelas = {
+    decorativas: 500,
+    bandejas: 900,
+    carameleras: 1500
+};
+
+// Array-Objeto - Almacen de velas que seleccione el cliente
+class VentaVelas {
+    constructor() {
+        this.velasSeleccionadas = {};
+    }
+
+    agregarVela(tipo, cantidad) {
+        if (this.velasSeleccionadas[tipo]) {
+            this.velasSeleccionadas[tipo] += cantidad;
+        } else {
+            this.velasSeleccionadas[tipo] = cantidad;
+        }
+    }
+
+    restarVela(tipo, cantidad) {
+        if (this.velasSeleccionadas[tipo]) {
+            this.velasSeleccionadas[tipo] -= cantidad;
+            if (this.velasSeleccionadas[tipo] <= 0) {
+                delete this.velasSeleccionadas[tipo];
+            }
+        }
+    }
+
+    calcularCostoTotal() {
+        let costoTotal = 0;
+        for (let tipo in this.velasSeleccionadas) {
+            if (this.velasSeleccionadas.hasOwnProperty(tipo)) {
+                costoTotal += preciosVelas[tipo] * this.velasSeleccionadas[tipo];
+            }
+        }
+        return costoTotal;
+    }
+}
+
 // Validar el nombre del usuario
 function validarNombre(nombre) {
     return nombre && nombre.trim() !== ''; // Valida que se haya cargado si o si un nombre
@@ -9,7 +50,7 @@ function validarCantidad(cantidad) {
         if (parseInt(cantidad) <= 10) {
             return true; // Si es un número entero positivo y no excede 10, retorna true
         } else {
-            alert("¡Atención! Si desea comprar más de 10 velas, por favor comuníquese con nosotros para obtener precios al por mayor..");
+            alert("¡Atención! Si desea comprar más de 10 velas, por favor comuníquese con nosotros para obtener precios al por mayor.");
             return false;
         }
     } else {
@@ -24,8 +65,8 @@ do {
     nombreUsuario = prompt("Bienvenidos a Inzara Aromas, ¿Cuál es su nombre?");
 } while (!validarNombre(nombreUsuario));
 
-// Objeto que almacenará las cantidades de velas seleccionadas por el usuario
-let velasSeleccionadas = {};
+// Objeto para la venta de velas
+let venta = new VentaVelas();
 
 // Ciclo 
 do {
@@ -42,31 +83,28 @@ do {
         cantidadVela = prompt(`¿Cuántas velas ${tipoVela} necesita?`);
     } while (!validarCantidad(cantidadVela));
 
-    velasSeleccionadas[tipoVela] = parseInt(cantidadVela);
+    venta.agregarVela(tipoVela, parseInt(cantidadVela));
 
-    let agregarMas;
+    let continuar;
     do {
-        agregarMas = prompt("¿Desea agregar más velas? (SI/NO)").toUpperCase();
-    } while (agregarMas !== "SI" && agregarMas !== "NO");
+        continuar = prompt("¿Desea agregar más velas o quitar algunas? (Agregar/Quitar/No)").toUpperCase();
+    } while (continuar !== "Agregar" && continuar !== "Quitar" && continuar !== "No");
 
-    if (agregarMas === "NO") {
-        break; // Salir del bucle si el usuario no quiere agregar más velas.
+    if (continuar === "No") {
+        break; // Salir del bucle si el usuario no quiere agregar ni quitar más velas.
+    } else if (continuar === "Quitar") {
+        let cantidadQuitar;
+        do {
+            cantidadQuitar = prompt(`¿Cuántas velas ${tipoVela} desea quitar?`);
+        } while (!validarCantidad(cantidadQuitar));
+
+        venta.restarVela(tipoVela, parseInt(cantidadQuitar));
     }
 } while (true);
 
 // Calcular el costo total de todas las velas seleccionadas
-let costoTotal = 0;
-for (let tipo in velasSeleccionadas) {
-    if (velasSeleccionadas.hasOwnProperty(tipo)) {
-        if (tipo === 'decorativas') {
-            costoTotal += 500 * velasSeleccionadas[tipo];
-        } else if (tipo === 'bandejas') {
-            costoTotal += 900 * velasSeleccionadas[tipo];
-        } else if (tipo === 'carameleras') {
-            costoTotal += 1500 * velasSeleccionadas[tipo];
-        }
-    }
-}
+let costoTotal = venta.calcularCostoTotal();
 
 // Costo total de las velas.
 alert(`El costo total de su pedido es: $${costoTotal}. \n\n¡Muchas gracias por su compra, ${nombreUsuario}! ¡Vuelva pronto!`);
+
