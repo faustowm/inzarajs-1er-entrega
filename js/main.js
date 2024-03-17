@@ -1,11 +1,11 @@
-// Objeto - Tipos de velas y precios
+// Objeto para manejar los tipos y precios de las velas
 const preciosVelas = {
     decorativas: 500,
     bandejas: 900,
     carameleras: 1500
 };
 
-// Array-Objeto - Almacen de velas que seleccione el cliente
+// Objeto que almacenará las cantidades de velas seleccionadas por el usuario
 class VentaVelas {
     constructor() {
         this.velasSeleccionadas = {};
@@ -87,12 +87,12 @@ do {
 
     let continuar;
     do {
-        continuar = prompt("¿Desea agregar más velas o quitar algunas? (Agregar/Quitar/No)").toUpperCase();
-    } while (continuar !== "Agregar" && continuar !== "Quitar" && continuar !== "No");
+        continuar = prompt("¿Desea agregar más velas o quitar algunas? (AGREGAR/QUITAR/NO)").toUpperCase();
+    } while (continuar !== "AGREGAR" && continuar !== "QUITAR" && continuar !== "NO");
 
-    if (continuar === "No") {
+    if (continuar === "NO") {
         break; // Salir del bucle si el usuario no quiere agregar ni quitar más velas.
-    } else if (continuar === "Quitar") {
+    } else if (continuar === "QUITAR") {
         let cantidadQuitar;
         do {
             cantidadQuitar = prompt(`¿Cuántas velas ${tipoVela} desea quitar?`);
@@ -107,4 +107,5 @@ let costoTotal = venta.calcularCostoTotal();
 
 // Costo total de las velas.
 alert(`El costo total de su pedido es: $${costoTotal}. \n\n¡Muchas gracias por su compra, ${nombreUsuario}! ¡Vuelva pronto!`);
+
 
