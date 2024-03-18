@@ -41,8 +41,14 @@ class VentaVelas {
 
 // Validar el nombre del usuario
 function validarNombre(nombre) {
-    return nombre && nombre.trim() !== ''; // Valida que se haya cargado si o si un nombre
+    if (/^[a-zA-Z]+$/.test(nombre)) {
+        return true; // Nombre valido
+    } else {
+        alert("¡Error! Por favor ingrese un nombre válido sin caracteres especiales ni números.");
+        return false; // Nombre invalido
+    }
 }
+
 
 // Validar la cantidad ingresada
 function validarCantidad(cantidad) {
@@ -70,13 +76,19 @@ let venta = new VentaVelas();
 
 // Ciclo 
 do {
-    let tipoVela = prompt(`${nombreUsuario}, elija qué tipo de velas necesita: Decorativas, Bandejas, Carameleras`).toLowerCase();
-    
-    // Validar el tipo de vela ingresado
-    if (tipoVela !== 'decorativas' && tipoVela !== 'bandejas' && tipoVela !== 'carameleras') {
-        alert("¡Error! Por favor ingrese un tipo de vela válido.");
-        continue; // Vuelve al inicio del bucle para que el usuario ingrese nuevamente el tipo de vela
-    }
+    let tipoVela;
+    do {
+        tipoVela = prompt(`${nombreUsuario}, elija el tipo de vela que necesita:\n1. Decorativas\n2. Bandejas\n3. Carameleras`);
+        if (tipoVela === '1') {
+            tipoVela = 'decorativas';
+        } else if (tipoVela === '2') {
+            tipoVela = 'bandejas';
+        } else if (tipoVela === '3') {
+            tipoVela = 'carameleras';
+        } else {
+            alert("¡Error! Por favor ingrese un número correspondiente al tipo de vela.");
+        }
+    } while (tipoVela !== 'decorativas' && tipoVela !== 'bandejas' && tipoVela !== 'carameleras');
     
     let cantidadVela;
     do {
