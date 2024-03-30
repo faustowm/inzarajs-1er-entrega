@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Finalizar la compra 
     document.getElementById("finalizar-compra").addEventListener("click", () => {
-        alert("Compra finalizada. Gracias por su compra!");
+        alert("Gracias por su compra, vuelva pronto!");
         resetearCarrito(); // Llama a la función para restablecer el carrito
     });
 
