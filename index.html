@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido a InzaraAromas</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>E-commerce Inzara Aromas</title>
 </head>
 <body>
-    <h1>Bienvenidos a InzaraAromas!</h1>
-    
+    <header class="header">
+        <a class="class-logo" href="#">
+            <img class="Logo" src="img/foto1.jpeg" alt="Logo">
+            <img class="Logo" src="img/foto2.jpeg" alt="Logo">
+            <img class="Logo" src="img/foto3.jpeg" alt="Logo">
+        </a>
+    </header>
+    <main>
+        <section id="velas">
+            <div></div>
+            <div id="decorativas" class="velas-container"></div>
+            <div id="bandejas" class="velas-container"></div>
+            <div id="carameleras" class="velas-container"></div>
+        </section>
+        <section id="carrito">
+            <h2>Carrito de Compras</h2>
+            <div id="resumen" class="resumen"></div>
+        </section>
+        <div id="botones-final">
+            <button id="limpiar-carrito">Limpiar Carrito</button>
+            <button id="finalizar-compra">Finalizar Compra</button>
+        </div>
+        <div id="total-compra"></div>
+    </main>
+    <script src="json/data.json"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

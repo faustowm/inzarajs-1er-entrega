@@ -1,123 +1,166 @@
-// Objeto para manejar los tipos y precios de las velas
-const preciosVelas = {
-    decorativas: 500,
-    bandejas: 900,
-    carameleras: 1500
-};
+document.addEventListener("DOMContentLoaded", function() {
+    let carrito = [];
 
-// Objeto que almacenará las cantidades de velas seleccionadas por el usuario
-class VentaVelas {
-    constructor() {
-        this.velasSeleccionadas = {};
+    // Cargar datos de las velas desde el archivo JSON
+    fetch("./json/data.json")
+        .then(response => response.json())
+        .then(data => {
+            mostrarVelas(data);
+        });
+
+    // Mostrar las velas en el DOM
+    function mostrarVelas(velas) {
+        const decorativasContainer = document.getElementById("decorativas");
+        const bandejasContainer = document.getElementById("bandejas");
+        const caramelerasContainer = document.getElementById("carameleras");
+
+        velas.decorativas.forEach(v => {
+            const velaDiv = crearVelaDiv(v);
+            decorativasContainer.appendChild(velaDiv);
+        });
+
+        velas.bandejas.forEach(v => {
+            const velaDiv = crearVelaDiv(v);
+            bandejasContainer.appendChild(velaDiv);
+        });
+
+        velas.carameleras.forEach(v => {
+            const velaDiv = crearVelaDiv(v);
+            caramelerasContainer.appendChild(velaDiv);
+        });
+
+        // Cargar el carrito guardado en el almacenamiento local
+        cargarCarritoLocalStorage();
     }
 
-    agregarVela(tipo, cantidad) {
-        if (this.velasSeleccionadas[tipo]) {
-            this.velasSeleccionadas[tipo] += cantidad;
-        } else {
-            this.velasSeleccionadas[tipo] = cantidad;
-        }
-    }
-
-    restarVela(tipo, cantidad) {
-        if (this.velasSeleccionadas[tipo]) {
-            this.velasSeleccionadas[tipo] -= cantidad;
-            if (this.velasSeleccionadas[tipo] <= 0) {
-                delete this.velasSeleccionadas[tipo];
-            }
-        }
-    }
-
-    calcularCostoTotal() {
-        let costoTotal = 0;
-        for (let tipo in this.velasSeleccionadas) {
-            if (this.velasSeleccionadas.hasOwnProperty(tipo)) {
-                costoTotal += preciosVelas[tipo] * this.velasSeleccionadas[tipo];
-            }
-        }
-        return costoTotal;
-    }
-}
-
-// Validar el nombre del usuario
-function validarNombre(nombre) {
-    if (/^[a-zA-Z]+$/.test(nombre)) {
-        return true; // Nombre valido
-    } else {
-        alert("¡Error! Por favor ingrese un nombre válido sin caracteres especiales ni números.");
-        return false; // Nombre invalido
-    }
-}
-
-
-// Validar la cantidad ingresada
-function validarCantidad(cantidad) {
-    if (!isNaN(cantidad) && parseInt(cantidad) > 0) {
-        if (parseInt(cantidad) <= 10) {
-            return true; // Si es un número entero positivo y no excede 10, retorna true
-        } else {
-            alert("¡Atención! Si desea comprar más de 10 velas, por favor comuníquese con nosotros para obtener precios al por mayor.");
-            return false;
-        }
-    } else {
-        alert("¡Error! Por favor ingrese un número entero positivo para la cantidad de velas.");
-        return false; // Si no es un número entero positivo, muestra una alerta y retorna false
-    }
-}
-
-// Nombre de usuario
-let nombreUsuario;
-do {
-    nombreUsuario = prompt("Bienvenidos a Inzara Aromas, ¿Cuál es su nombre?");
-} while (!validarNombre(nombreUsuario));
-
-// Objeto para la venta de velas
-let venta = new VentaVelas();
-
-// Ciclo 
-do {
-    let tipoVela;
-    do {
-        tipoVela = prompt(`${nombreUsuario}, elija el tipo de vela que necesita:\n1. Decorativas\n2. Bandejas\n3. Carameleras`);
-        if (tipoVela === '1') {
-            tipoVela = 'decorativas';
-        } else if (tipoVela === '2') {
-            tipoVela = 'bandejas';
-        } else if (tipoVela === '3') {
-            tipoVela = 'carameleras';
-        } else {
-            alert("¡Error! Por favor ingrese un número correspondiente al tipo de vela.");
-        }
-    } while (tipoVela !== 'decorativas' && tipoVela !== 'bandejas' && tipoVela !== 'carameleras');
+    // Crear elemento de vela en el DOM
+    function crearVelaDiv(vela) {
+        const velaDiv = document.createElement("div");
+        velaDiv.classList.add("vela");
+        velaDiv.innerHTML = `
+            <img src="${vela.imagen}" alt="${vela.nombre}">
+            <h3>${vela.nombre}</h3>
+            <p>$${vela.precio}</p>
+            <button class="agregar" data-id="${vela.id}">Agregar al Carrito</button>
+        `;
     
-    let cantidadVela;
-    do {
-        cantidadVela = prompt(`¿Cuántas velas ${tipoVela} necesita?`);
-    } while (!validarCantidad(cantidadVela));
-
-    venta.agregarVela(tipoVela, parseInt(cantidadVela));
-
-    let continuar;
-    do {
-        continuar = prompt("¿Desea agregar más velas o quitar algunas? (AGREGAR/QUITAR/NO)").toUpperCase();
-    } while (continuar !== "AGREGAR" && continuar !== "QUITAR" && continuar !== "NO");
-
-    if (continuar === "NO") {
-        break; // Salir del bucle si el usuario no quiere agregar ni quitar más velas.
-    } else if (continuar === "QUITAR") {
-        let cantidadQuitar;
-        do {
-            cantidadQuitar = prompt(`¿Cuántas velas ${tipoVela} desea quitar?`);
-        } while (!validarCantidad(cantidadQuitar));
-
-        venta.restarVela(tipoVela, parseInt(cantidadQuitar));
+        velaDiv.querySelector('.agregar').addEventListener("click", () => {
+            agregarAlCarrito(vela);
+        });
+    
+        return velaDiv;
     }
-} while (true);
 
-// Calcular el costo total de todas las velas seleccionadas
-let costoTotal = venta.calcularCostoTotal();
+    // Agregar vela seleccionada al carrito
+    function agregarAlCarrito(vela) {
+        const index = carrito.findIndex(item => item.id === vela.id);
+        if (index !== -1) {
+            carrito[index].cantidad++;
+        } else {
+            carrito.push({ ...vela, cantidad: 1 });
+        }
+        mostrarCarrito();
+        guardarCarritoLocalStorage();
+    }
 
-// Costo total de las velas.
-alert(`El costo total de su pedido es: $${costoTotal}. \n\n¡Muchas gracias por su compra, ${nombreUsuario}! ¡Vuelva pronto!`);
+    // Mostrar el contenido del carrito en el DOM
+    function mostrarCarrito() {
+        const resumenDiv = document.getElementById("resumen");
+        resumenDiv.innerHTML = "";
 
+        carrito.forEach(vela => {
+            const velaDiv = document.createElement("div");
+            velaDiv.innerHTML = `
+                <span>${vela.nombre} - $${vela.precio}</span>
+                <button class="agregar" data-id="${vela.id}">+</button>
+                <span>${vela.cantidad}</span>
+                <button class="quitar" data-id="${vela.id}">-</button>
+                <span>Total: $${vela.precio * vela.cantidad}</span>
+            `;
+            resumenDiv.appendChild(velaDiv);
 
+            // Agregar evento para agregar una unidad al artículo
+            velaDiv.querySelector('.agregar').addEventListener('click', () => {
+                aumentarCantidad(vela.id);
+            });
+
+            // Agregar evento para quitar una unidad al artículo
+            velaDiv.querySelector('.quitar').addEventListener('click', () => {
+                disminuirCantidad(vela.id);
+            });
+        });
+
+        mostrarTotalCompra(); // Mostrar el total de la compra
+    }
+
+    // Calcular el total de la compra
+    function calcularTotalCompra() {
+        let total = 0;
+        carrito.forEach(vela => {
+            total += vela.precio * vela.cantidad;
+        });
+        return total;
+    }
+
+    // Mostrar el total de la compra en el DOM
+    function mostrarTotalCompra() {
+        const totalCompraDiv = document.getElementById("total-compra");
+        const total = calcularTotalCompra();
+        totalCompraDiv.textContent = `Su compra es: $${total}`;
+    }
+
+    // Aumentar la cantidad de un artículo en el carrito
+    function aumentarCantidad(id) {
+        const index = carrito.findIndex(item => item.id === id);
+        if (index !== -1) {
+            carrito[index].cantidad++;
+            mostrarCarrito();
+        }
+    }
+
+    // Disminuir la cantidad de un artículo en el carrito
+    function disminuirCantidad(id) {
+        const index = carrito.findIndex(item => item.id === id);
+        if (index !== -1) {
+            if (carrito[index].cantidad > 1) {
+                carrito[index].cantidad--;
+            } else {
+                carrito.splice(index, 1); // Si la cantidad es 1, eliminar el artículo del carrito
+            }
+            mostrarCarrito();
+        }
+    }
+
+     // Guardar el carrito en el almacenamiento local
+     function guardarCarritoLocalStorage() {
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    // Cargar el carrito desde el almacenamiento local
+    function cargarCarritoLocalStorage() {
+        if (localStorage.getItem('carrito')) {
+            carrito = JSON.parse(localStorage.getItem('carrito'));
+            mostrarCarrito(); // Mostrar el carrito guardado al cargar la página
+        }
+    }
+
+     // Limpiar el carrito
+     document.getElementById("limpiar-carrito").addEventListener("click", () => {
+        carrito.splice(0, carrito.length);
+        mostrarCarrito();
+        guardarCarritoLocalStorage(); // Guardar el carrito vacío
+    });
+
+    // Finalizar la compra 
+    document.getElementById("finalizar-compra").addEventListener("click", () => {
+        alert("Compra finalizada. Gracias por su compra!");
+        resetearCarrito(); // Llama a la función para restablecer el carrito
+    });
+
+     // Función para restablecer el carrito a cero
+     function resetearCarrito() {
+        carrito = [];
+        mostrarCarrito(); 
+        guardarCarritoLocalStorage(); 
+    }
+});

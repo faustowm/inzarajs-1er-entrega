@@ -1,0 +1,45 @@
+{
+    "decorativas": [
+      {
+        "id": 1,
+        "nombre": "Vela Decorativa 1",
+        "precio": 500,
+        "imagen": "./img/Velas1.jpeg"
+      },
+      {
+        "id": 2,
+        "nombre": "Vela Decorativa 2",
+        "precio": 500,
+        "imagen": "./img/Velas2.jpeg"
+      }
+    ],
+    "bandejas": [
+      {
+        "id": 3,
+        "nombre": "Vela de Bandeja 1",
+        "precio": 1000,
+        "imagen": "./img/bandeja1.jpg"
+      },
+      {
+        "id": 4,
+        "nombre": "Vela de Bandeja 2",
+        "precio": 1000,
+        "imagen": "./img/bandeja2.jpg"
+      }
+    ],
+    "carameleras": [
+      {
+        "id": 5,
+        "nombre": "Vela Caramelera 1",
+        "precio": 1500,
+        "imagen": "./img/caramelera1.jpg"
+      },
+      {
+        "id": 6,
+        "nombre": "Vela Caramelera 2",
+        "precio": 1500,
+        "imagen": "./img/caramelera2.jpg"
+      }
+    ]
+  }
+  
