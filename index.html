@@ -7,30 +7,31 @@
     <title>E-commerce Inzara Aromas</title>
 </head>
 <body>
-    <header class="header">
+    <header class="header">      
         <a class="class-logo" href="#">
             <img class="Logo" src="img/foto1.jpeg" alt="Logo">
             <img class="Logo" src="img/foto2.jpeg" alt="Logo">
             <img class="Logo" src="img/foto3.jpeg" alt="Logo">
         </a>
     </header>
-    <main>
-        <section id="velas">
-            <div></div>
+    <main class="container">
+        <section id="velas" class="productos-container">
             <div id="decorativas" class="velas-container"></div>
             <div id="bandejas" class="velas-container"></div>
             <div id="carameleras" class="velas-container"></div>
         </section>
-        <section id="carrito">
+        
+        <aside id="carrito" class="carrito">
             <h2>Carrito de Compras</h2>
             <div id="resumen" class="resumen"></div>
-        </section>
-        <div id="botones-final">
-            <button id="limpiar-carrito">Limpiar Carrito</button>
-            <button id="finalizar-compra">Finalizar Compra</button>
-        </div>
-        <div id="total-compra"></div>
+            <div id="botones-final">
+                <button id="limpiar-carrito">Limpiar Carrito</button>
+                <button id="finalizar-compra">Finalizar Compra</button>
+            </div>
+            <div id="total-compra"></div>
+        </aside>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="json/data.json"></script>
     <script src="js/main.js"></script>
 </body>

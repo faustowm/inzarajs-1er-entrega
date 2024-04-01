@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
         mostrarCarrito();
         guardarCarritoLocalStorage();
     }
-
     // Mostrar el contenido del carrito en el DOM
     function mostrarCarrito() {
         const resumenDiv = document.getElementById("resumen");
@@ -75,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 <button class="agregar" data-id="${vela.id}">+</button>
                 <span>${vela.cantidad}</span>
                 <button class="quitar" data-id="${vela.id}">-</button>
-                <span>Total: $${vela.precio * vela.cantidad}</span>
             `;
             resumenDiv.appendChild(velaDiv);
 
@@ -143,7 +141,6 @@ document.addEventListener("DOMContentLoaded", function() {
             mostrarCarrito(); // Mostrar el carrito guardado al cargar la página
         }
     }
-
      // Limpiar el carrito
      document.getElementById("limpiar-carrito").addEventListener("click", () => {
         carrito.splice(0, carrito.length);
@@ -151,16 +148,23 @@ document.addEventListener("DOMContentLoaded", function() {
         guardarCarritoLocalStorage(); // Guardar el carrito vacío
     });
 
-    // Finalizar la compra 
-    document.getElementById("finalizar-compra").addEventListener("click", () => {
-        alert("Gracias por su compra, vuelva pronto!");
+ // Finalizar la compra 
+document.getElementById("finalizar-compra").addEventListener("click", () => {
+    // Sweet Alert 2
+    Swal.fire({
+        title: '¡Gracias por su compra!',
+        text: '¡Vuelva pronto!',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+    }).then(() => {
         resetearCarrito(); // Llama a la función para restablecer el carrito
     });
+});
 
      // Función para restablecer el carrito a cero
      function resetearCarrito() {
         carrito = [];
-        mostrarCarrito(); 
+        mostrarCarrito();
         guardarCarritoLocalStorage(); 
     }
 });
