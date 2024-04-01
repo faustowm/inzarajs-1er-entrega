@@ -86,17 +86,17 @@
 
 .carrito {
     width: 300px;
-    max-height: calc(100vh - 100px); /* Calcula la altura máxima basada en la altura de la ventana menos el espacio para el encabezado */
-    overflow-y: auto; /* Agrega desplazamiento vertical cuando sea necesario */
+    max-height: calc(100vh - 100px);
+    overflow-y: auto; 
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed; /* Mantener el carrito fijo en la pantalla */
-    top: 50px; /* Ajustar la posición vertical según sea necesario */
-    right: 20px; /* Ajustar la posición horizontal según sea necesario */
-    z-index: 1000; /* Asegurar que el carrito esté sobre otros elementos */
+    position: fixed; 
+    top: 50px;
+    right: 20px; 
+    z-index: 1000; 
 }
 
 
@@ -201,6 +201,18 @@
 #total-compra {
     font-size: 18px;
     font-weight: bold;
+}
+
+/* MQ (1080px) */
+@media screen and (max-width: 1080px) {
+    .carrito {
+        width: 250px; 
+        max-height: calc(100vh - 100px); 
+    }
+    
+    #velas {
+        justify-content: center; 
+    }
 }
 
 

@@ -149,8 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
  // Finalizar la compra 
-document.getElementById("finalizar-compra").addEventListener("click", () => {
-    // Sweet Alert 2
+    document.getElementById("finalizar-compra").addEventListener("click", () => {
     Swal.fire({
         title: '¡Gracias por su compra!',
         text: '¡Vuelva pronto!',
