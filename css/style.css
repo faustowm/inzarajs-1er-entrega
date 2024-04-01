@@ -209,15 +209,35 @@
         justify-content: space-between; 
         align-items: center;
     }
- 
     #velas {
-        flex-direction: column; 
-        align-items: center; 
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-around; 
+        
     }
+    
+    .velas-container {
+        width: calc(33.33% - 20px); 
+        margin-bottom: 20px;
+        box-sizing: border-box; 
+        padding: 0 10px; 
+    }
+    
+    .vela {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+    
     .vela img {
-        max-width: 100%; 
+        width: 100%; 
         height: auto; 
+        border-radius: 5px;
     }
+    
 }
 
 
