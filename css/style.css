@@ -17,14 +17,14 @@
     }
   }
   
-  .class-logo {
+.class-logo {
     display: flex;
     justify-content: center; 
     margin-bottom: 10px;
     padding: 10px;
   }
   
-  .Logo {
+.Logo {
     width: 200px; 
     height: auto;
     margin-right: 10px;
@@ -32,7 +32,7 @@
   }
 
   
-  #velas {
+#velas {
     display: flex;
     justify-content: flex-start; /* Alinear las imágenes de la izquierda */
     flex-wrap: wrap; /* Permitir que las imágenes se envuelvan si no hay suficiente espacio */
@@ -78,10 +78,6 @@
     flex: 1; 
     display: flex;
     justify-content: space-around;  
-}
-
-.velas-container {
-    width: 300px; 
 }
 
 .carrito {
