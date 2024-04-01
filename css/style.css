@@ -206,14 +206,17 @@
 /* MQ (1080px) */
 @media screen and (max-width: 1080px) {
     .carrito {
-        width: 250px; 
-        max-height: calc(100vh - 100px); 
+        width: 250px; /* Reducir el ancho del carrito */
+        max-height: calc(100vh - 100px); /* Ajustar la altura máxima del carrito */
+        margin-left: 10px; /* Reducir el margen izquierdo */
+        padding: 10px; /* Reducir el espacio interior */
     }
     
     #velas {
-        justify-content: center; 
+        justify-content: center; /* Centrar las imágenes */
     }
 }
+
 
 
 /* MQ (768px) */
