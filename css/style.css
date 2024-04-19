@@ -1,3 +1,4 @@
+/*Header*/
 .header {
     background: #5D4157;
     background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);
@@ -31,11 +32,112 @@
     animation: fadeIn 1s ease-in-out;
   }
 
+  .menu-item {
+    display: flex;
+  }
   
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .menu-link {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  .menu-link:hover {
+    color: #ff6f61;
+  }
+
+  /* contacto */
+
+.contacto-form {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    background: hsl(313, 41%, 18%);
+    background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);
+    background: linear-gradient(to right, #A8CABA, #5D4157);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contacto-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+    z-index: -1;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333; 
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    transition: border-color 0.3s; 
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    border-color: #5D4157; 
+  }
+  
+  .formulario {
+    background-color: #5D4157; /
+    color: #fff; 
+    padding: 15px 25px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .formulario:hover {
+    background-color: #A8CABA;
+  }
+  
+  
+  /*puntos de venta */
+
+.class-venta {
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    background: #5D4157;
+    background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);
+    background: linear-gradient(to right, #A8CABA, #5D4157);
+  
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  /*Velas*/
 #velas {
     display: flex;
-    justify-content: flex-start; /* Alinear las imágenes de la izquierda */
-    flex-wrap: wrap; /* Permitir que las imágenes se envuelvan si no hay suficiente espacio */
+    justify-content: flex-start; 
+    flex-wrap: wrap; 
     background: #5D4157;
     background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);
     background: linear-gradient(to right, #A8CABA, #5D4157);
@@ -80,6 +182,7 @@
     justify-content: space-around;  
 }
 
+/*Carrito*/
 .carrito {
     width: 300px;
     max-height: calc(100vh - 100px);
@@ -94,7 +197,6 @@
     right: 20px; 
     z-index: 1000; 
 }
-
 
 #carrito {
     display: flex;
@@ -153,6 +255,7 @@
     background-color: #0056b3;
 }
 
+/*Hora Actual*/
 .hora-actual {
     background-color: #f8f8f8;
     padding: 10px;
@@ -167,8 +270,7 @@
     margin-right: 5px;
 }
 
-
-
+/*Resumen y botones*/
 #resumen {
     display: flex;
     flex-direction: column; 
@@ -215,6 +317,36 @@
     font-weight: bold;
 }
 
+/*Footer*/
+.footer {
+    background: #5D4157;
+    background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);
+    background: linear-gradient(to right, #A8CABA, #5D4157);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.redes-sociales a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.redes-sociales img {
+    width: 40px; 
+}
+
+.frase {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 24px; 
+    color: #555; 
+}
+
+.destacado {
+    font-weight: bold; 
+    color: hsla(312, 100%, 50%, 0.445); 
+}
+
 @media screen and (min-width: 769px) {
     .header {
         display: flex;
@@ -252,34 +384,7 @@
     
 }
 
-.footer {
-    background: #5D4157;
-    background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);
-    background: linear-gradient(to right, #A8CABA, #5D4157);
-    padding: 20px 0;
-    text-align: center;
-}
 
-.redes-sociales a {
-    display: inline-block;
-    margin: 0 10px;
-}
-
-.redes-sociales img {
-    width: 40px; /* Ajusta el tamaño de los logos según tu preferencia */
-}
-
-.frase {
-    margin-top: 10px;
-    font-style: italic;
-    font-size: 24px; /* Aumenta el tamaño del texto */
-    color: #555; /* Cambia el color del texto si es necesario */
-}
-
-.destacado {
-    font-weight: bold; /* Hace que la parte destacada sea más llamativa */
-    color: hsla(312, 100%, 50%, 0.445); /* Cambia el color de la parte destacada */
-}
 
 @media screen and (max-width: 768px) {
     .Logo {

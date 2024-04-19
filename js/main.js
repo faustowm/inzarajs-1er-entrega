@@ -175,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // Finalizar la compra 
 document.getElementById("finalizar-compra").addEventListener("click", () => {
     if (carrito.length === 0) {
-        // Mostrar alerta de carrito vacío con SweetAlert
         Swal.fire({
             title: '¡Espera!',
             text: 'Te has olvidado de agregar una hermosa vela a tu carrito.',
@@ -192,14 +191,13 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
             cancelButtonText: 'Cancelar'    
         }).then((result) => {
             if (result.isConfirmed) {
-                // Si el usuario confirma, mostrar mensaje de éxito y restablecer carrito
                 Swal.fire({
                     title: '¡Agradecemos su compra!',
                     text: '¡Inzara lo espera pronto!!!',
                     icon: 'success',
                     confirmButtonText: 'Aceptar'
                 }).then(() => {
-                    resetearCarrito(); // Llama a la función para restablecer el carrito
+                    resetearCarrito(); 
                 });
             }
         });
@@ -215,14 +213,9 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Mostrar la hora actual en el carrito y actualizarla cada segundo
-    mostrarHoraActual();
-    setInterval(mostrarHoraActual, 1000);
-});
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Mostrar la hora actual en el carrito y actualizarla cada segundo
+
     mostrarHoraActual();
     setInterval(mostrarHoraActual, 1000);
 });
