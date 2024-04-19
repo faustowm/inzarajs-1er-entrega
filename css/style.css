@@ -252,6 +252,34 @@
     
 }
 
+.footer {
+    background: #5D4157;
+    background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);
+    background: linear-gradient(to right, #A8CABA, #5D4157);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.redes-sociales a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.redes-sociales img {
+    width: 40px; /* Ajusta el tamaño de los logos según tu preferencia */
+}
+
+.frase {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 24px; /* Aumenta el tamaño del texto */
+    color: #555; /* Cambia el color del texto si es necesario */
+}
+
+.destacado {
+    font-weight: bold; /* Hace que la parte destacada sea más llamativa */
+    color: hsla(312, 100%, 50%, 0.445); /* Cambia el color de la parte destacada */
+}
 
 @media screen and (max-width: 768px) {
     .Logo {
