@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
         mostrarCarrito();
         guardarCarritoLocalStorage();
     }
+    
     // Mostrar el contenido del carrito en el DOM
     function mostrarCarrito() {
         const resumenDiv = document.getElementById("resumen");
@@ -88,8 +89,10 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
+        
         mostrarTotalCompra(); // Mostrar el total de la compra
     }
+
 
     // Calcular el total de la compra
     function calcularTotalCompra() {
@@ -148,17 +151,40 @@ document.addEventListener("DOMContentLoaded", function() {
         guardarCarritoLocalStorage(); // Guardar el carrito vacío
     });
 
- // Finalizar la compra 
-    document.getElementById("finalizar-compra").addEventListener("click", () => {
-    Swal.fire({
-        title: '¡Gracias por su compra!',
-        text: '¡Vuelva pronto!',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
-    }).then(() => {
-        resetearCarrito(); // Llama a la función para restablecer el carrito
-    });
+// Finalizar la compra 
+document.getElementById("finalizar-compra").addEventListener("click", () => {
+    if (carrito.length === 0) {
+        // Mostrar alerta de carrito vacío con SweetAlert
+        Swal.fire({
+            title: '¡Espera!',
+            text: 'Te has olvidado de agregar una hermosa vela a tu carrito.',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        });
+    } else {
+        Swal.fire({
+            title: '¿Llevamos mas velitas o confirmamos el pedido?',
+            text: 'Confirmar para finalizar la compra.',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, mostrar mensaje de éxito y restablecer carrito
+                Swal.fire({
+                    title: '¡Agradecemos su compra!',
+                    text: '¡Inzara lo espera pronto!!!',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }).then(() => {
+                    resetearCarrito(); // Llama a la función para restablecer el carrito
+                });
+            }
+        });
+    }
 });
+
 
      // Función para restablecer el carrito a cero
      function resetearCarrito() {
@@ -167,3 +193,5 @@ document.addEventListener("DOMContentLoaded", function() {
         guardarCarritoLocalStorage(); 
     }
 });
+
+
