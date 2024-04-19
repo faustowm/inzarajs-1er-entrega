@@ -153,6 +153,22 @@
     background-color: #0056b3;
 }
 
+.hora-actual {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.hora-actual::before {
+    content: "\1F551"; /* Ícono de reloj */
+    margin-right: 5px;
+}
+
+
+
 #resumen {
     display: flex;
     flex-direction: column; 

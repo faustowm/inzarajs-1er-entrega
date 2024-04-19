@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     let carrito = [];
 
-       // Cargar datos de las velas desde el archivo JSON
-       cargarDatos("./json/data.json")
-       .then(velas => {
-           mostrarVelas(velas);
-       })
-       .catch(error => {
-           console.error('Error al cargar los datos:', error);
-       });
+     // Cargar datos de las velas desde el archivo JSON
+     cargarDatos("./json/data.json")
+     .then(velas => {
+         mostrarVelas(velas);
+     })
+     .catch(error => {
+         console.error('Error al cargar los datos:', error);
+     });
 
     // Mostrar las velas en el DOM
     function mostrarVelas(velas) {
@@ -35,24 +35,24 @@ document.addEventListener("DOMContentLoaded", function() {
         cargarCarritoLocalStorage();
     }
 
-    // Función para cargar los datos
-    function cargarDatos(url) {
-        return new Promise((resolve, reject) => {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al obtener los datos');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    resolve(data);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        });
-    }
+ // Función para cargar los datos
+ function cargarDatos(url) {
+    return new Promise((resolve, reject) => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos');
+                }
+                return response.json();
+            })
+            .then(data => {
+                resolve(data);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
 
     // Crear elemento de vela en el DOM
     function crearVelaDiv(vela) {
@@ -215,4 +215,35 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Mostrar la hora actual en el carrito y actualizarla cada segundo
+    mostrarHoraActual();
+    setInterval(mostrarHoraActual, 1000);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Mostrar la hora actual en el carrito y actualizarla cada segundo
+    mostrarHoraActual();
+    setInterval(mostrarHoraActual, 1000);
+});
+
+    // Hora actual
+    function mostrarHoraActual() {
+        obtenerHoraActual()
+            .then(horaActual => {
+                const horaActualCarritoDiv = document.getElementById("hora-actual-carrito");
+                horaActualCarritoDiv.textContent = horaActual;
+            })
+            .catch(error => {
+                console.error('Error al obtener la hora:', error);
+            });
+    }
+    
+
+function obtenerHoraActual() {
+    return new Promise((resolve, reject) => {
+        const horaActual = new Date().toLocaleString("es-ES", { timeZone: "America/Buenos_Aires" });
+        resolve(horaActual);
+    });
+}
 
