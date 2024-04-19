@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     let carrito = [];
 
-    // Cargar datos de las velas desde el archivo JSON
-    fetch("./json/data.json")
-        .then(response => response.json())
-        .then(data => {
-            mostrarVelas(data);
-        });
+       // Cargar datos de las velas desde el archivo JSON
+       cargarDatos("./json/data.json")
+       .then(velas => {
+           mostrarVelas(velas);
+       })
+       .catch(error => {
+           console.error('Error al cargar los datos:', error);
+       });
 
     // Mostrar las velas en el DOM
     function mostrarVelas(velas) {
@@ -31,6 +33,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Cargar el carrito guardado en el almacenamiento local
         cargarCarritoLocalStorage();
+    }
+
+    // Función para cargar los datos
+    function cargarDatos(url) {
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener los datos');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    resolve(data);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
     }
 
     // Crear elemento de vela en el DOM
@@ -168,7 +189,7 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Sí',
-            cancelButtonText: 'Cancelar'
+            cancelButtonText: 'Cancelar'    
         }).then((result) => {
             if (result.isConfirmed) {
                 // Si el usuario confirma, mostrar mensaje de éxito y restablecer carrito
