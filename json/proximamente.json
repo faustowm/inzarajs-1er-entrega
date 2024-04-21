@@ -1,0 +1,38 @@
+{
+    "Velas": [
+        {
+            "id": 1,
+            "nombre": "Velas Decorativas Importadas",
+            "imagen": "../img/proximamente/id1.png"
+        },
+        {
+            "id": 2,
+            "nombre": "Velas Industria Argentina",
+            "imagen": "../img/proximamente/id2.png"
+        }
+    ],
+    "bandejas": [
+        {
+            "id": 3,
+            "nombre": "Bandeja Velas Importadas",
+            "imagen": "../img/proximamente/id3.png"
+        },
+        {
+            "id": 4,
+            "nombre": "Bandejas Velas Industria Argentina",
+            "imagen": "../img/proximamente/id4.png"
+        }
+    ],
+    "carameleras": [
+        {
+            "id": 5,
+            "nombre": "Caramelera Importadas",
+            "imagen": "../img/proximamente/id5.png"
+        },
+        {
+            "id": 6,
+            "nombre": "Caramelera Industria Argentina",
+            "imagen": "../img/proximamente/id6.png"
+        }
+    ]
+}

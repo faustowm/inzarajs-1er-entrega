@@ -54,6 +54,31 @@
     color: #ff6f61;
   }
 
+  /* Estilos CSS para las tarjetas */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.titulongo {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-top: 2%;
+    font-size: 30px;
+}
+
   /* contacto */
 
 .contacto-form {
@@ -324,6 +349,20 @@
     background: linear-gradient(to right, #A8CABA, #5D4157);
     padding: 20px 0;
     text-align: center;
+    
+}
+
+a {
+    text-decoration: none; /* Quitar subrayado */
+    color: inherit; /* Mantener el color original del texto */
+}
+
+a:hover,
+a:active,
+a:focus,
+a:visited {
+    text-decoration: none; /* Quitar subrayado */
+    color: inherit; /* Mantener el color original del texto */
 }
 
 .redes-sociales a {
