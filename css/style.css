@@ -295,6 +295,24 @@
     background-color: #0056b3;
 }
 
+
+#cerrar-carrito-manualmente {
+    background-color: #f44336; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    align-self: right;
+}
+
+
+#cerrar-carrito-manualmente:hover {
+    background-color: #d32f2f; 
+}
+
+
 /*Hora Actual*/
 .hora-actual {
     background-color: #f8f8f8;
@@ -407,6 +425,7 @@ media screen and (min-width: 769px) {
         justify-content: space-between; 
         align-items: center;
     }
+    
     #velas {
         display: flex;
         flex-wrap: wrap; 

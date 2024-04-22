@@ -112,6 +112,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 	document.getElementById("toggle-carrito").addEventListener("click", toggleCarrito);
 
+	// Agregar evento al botón de cerrar carrito manualmente
+	document.getElementById("cerrar-carrito-manualmente").addEventListener("click", cerrarCarritoManualmente);
+
+	function cerrarCarritoManualmente() {
+    	const carritoDiv = document.getElementById("carrito");
+    carritoDiv.style.display = "none";
+}
+
 	// Mostrar el contenido del carrito en el DOM
 	function mostrarCarrito() {
 		const resumenDiv = document.getElementById("resumen");
@@ -206,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		carrito.splice(0, carrito.length);
 		mostrarCarrito();
 		guardarCarritoLocalStorage(); // Guardar el carrito vacío
-	});
+	});	
 
 	// Finalizar la compra 
 	document.getElementById("finalizar-compra").addEventListener("click", () => {
@@ -246,6 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		carrito = [];
 		mostrarCarrito();
 		guardarCarritoLocalStorage();
+		toggleCarrito();
 
 	}
 });
