@@ -82,39 +82,49 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         mostrarCarrito();
         guardarCarritoLocalStorage();
+        
     }
-    
+
+// Función para mostrar/ocultar el carrito
+    function toggleCarrito() {
+    const carritoDiv = document.getElementById("carrito");
+    if (carritoDiv.style.display === "block") {
+        carritoDiv.style.display = "none";
+    } else {
+        carritoDiv.style.display = "block";
+    }
+}
+    document.getElementById("toggle-carrito").addEventListener("click", toggleCarrito);
+
     // Mostrar el contenido del carrito en el DOM
     function mostrarCarrito() {
-        const resumenDiv = document.getElementById("resumen");
-        resumenDiv.innerHTML = "";
+    const resumenDiv = document.getElementById("resumen");
+    resumenDiv.innerHTML = "";
 
-        carrito.forEach(vela => {
-            const velaDiv = document.createElement("div");
-            velaDiv.innerHTML = `
-                <span>${vela.nombre} - $${vela.precio}</span>
-                <button class="agregar" data-id="${vela.id}">+</button>
-                <span>${vela.cantidad}</span>
-                <button class="quitar" data-id="${vela.id}">-</button>
-            `;
-            resumenDiv.appendChild(velaDiv);
+    carrito.forEach(vela => {
+        const velaDiv = document.createElement("div");
+        velaDiv.innerHTML = `
+            <span>${vela.nombre} - $${vela.precio}</span>
+            <button class="agregar" data-id="${vela.id}">+</button>
+            <span>${vela.cantidad}</span>
+            <button class="quitar" data-id="${vela.id}">-</button>
+        `;
+        resumenDiv.appendChild(velaDiv);
 
-            // Agregar evento para agregar una unidad al artículo
-            velaDiv.querySelector('.agregar').addEventListener('click', () => {
-                aumentarCantidad(vela.id);
-            });
-
-            // Agregar evento para quitar una unidad al artículo
-            velaDiv.querySelector('.quitar').addEventListener('click', () => {
-                disminuirCantidad(vela.id);
-            });
+        // Agregar evento para agregar una unidad al artículo
+        velaDiv.querySelector('.agregar').addEventListener('click', () => {
+            aumentarCantidad(vela.id);
         });
 
-        
-        mostrarTotalCompra(); // Mostrar el total de la compra
-    }
+        // Agregar evento para quitar una unidad al artículo
+        velaDiv.querySelector('.quitar').addEventListener('click', () => {
+            disminuirCantidad(vela.id);
+        });
+    });
 
+    mostrarTotalCompra(); // Mostrar el total de la compra
 
+}
     // Calcular el total de la compra
     function calcularTotalCompra() {
         let total = 0;
