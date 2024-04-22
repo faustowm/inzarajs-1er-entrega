@@ -72,6 +72,17 @@ document.addEventListener("DOMContentLoaded", function() {
         return velaDiv;
     }
 
+    function mostrarMensajeFlotante(mensaje) {
+        const mensajeDiv = document.createElement("div");
+        mensajeDiv.classList.add("mensaje-flotante");
+        mensajeDiv.textContent = mensaje;
+        document.body.appendChild(mensajeDiv);
+
+        setTimeout(() => {
+            mensajeDiv.remove();
+        }, 1000); 
+    }
+
     // Agregar vela seleccionada al carrito
     function agregarAlCarrito(vela) {
         const index = carrito.findIndex(item => item.id === vela.id);
@@ -82,6 +93,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         mostrarCarrito();
         guardarCarritoLocalStorage();
+        actualizarContadorCarrito();
+        mostrarMensajeFlotante("Agregaste una velita!!!");
+
         
     }
 
@@ -122,9 +136,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    mostrarTotalCompra(); // Mostrar el total de la compra
+    mostrarTotalCompra(); 
+    actualizarContadorCarrito();
 
 }
+
+function actualizarContadorCarrito() {
+    const contadorCarrito = document.getElementById("contador-carrito");
+    const totalCarrito = carrito.reduce((total, item) => total + item.cantidad, 0);
+    contadorCarrito.textContent = totalCarrito.toString();
+}
+
     // Calcular el total de la compra
     function calcularTotalCompra() {
         let total = 0;
@@ -160,6 +182,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 carrito.splice(index, 1); // Si la cantidad es 1, eliminar el artículo del carrito
             }
             mostrarCarrito();
+            guardarCarritoLocalStorage();
+            actualizarContadorCarrito();
         }
     }
 
@@ -220,6 +244,7 @@ document.getElementById("finalizar-compra").addEventListener("click", () => {
         carrito = [];
         mostrarCarrito();
         guardarCarritoLocalStorage(); 
+        
     }
 });
 

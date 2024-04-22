@@ -131,7 +131,7 @@
   
   .formulario {
     background-color: #5D4157; /
-    color: #fff; 
+    color: #fffff; 
     padding: 15px 25px; 
     border: none;
     border-radius: 5px;
@@ -144,6 +144,19 @@
     background-color: #A8CABA;
   }
   
+  /* Estilos CSS para el mensaje flotante */
+.mensaje-flotante {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:hsl(0, 3%, 79%);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999; 
+}
+
   
   /*puntos de venta */
 
@@ -228,9 +241,7 @@
 }
 
 #carrito {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;    
+    display: none; 
 }
 
 
@@ -390,6 +401,45 @@ a:visited {
     color: hsla(312, 100%, 50%, 0.445); 
 }
 
+media screen and (min-width: 769px) {
+    .header {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+    }
+    #velas {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-around; 
+        
+    }
+    
+    .velas-container {
+        width: calc(33.33% - 20px); 
+        margin-bottom: 20px;
+        box-sizing: border-box; 
+        padding: 0 10px; 
+    }
+    
+    .vela {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+    
+    .vela img {
+        width: 100%; 
+        height: auto; 
+        border-radius: 5px;
+    }
+    
+}
+
+
+
 @media screen and (min-width: 769px) {
     .header {
         display: flex;
@@ -453,6 +503,4 @@ a:visited {
         width: 120px; 
     }
 }
-
-
 
