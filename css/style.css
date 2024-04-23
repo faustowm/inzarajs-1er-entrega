@@ -500,45 +500,42 @@ a:visited {
     }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 480px) {
     .Logo {
-        width: 120px; 
+      width: 120px;
     }
-
-    nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px; 
+  
+    .class-logo {
+      margin-bottom: 10px;
     }
-
-    .navbar-item {
-        margin-bottom: 10px; 
+  
+    ul {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
     }
-
+  
+    .menu-link {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
     .titulongo {
-        font-size: 24px;
-        text-align: center; 
-        margin-bottom: 10px; 
+      font-size: 24px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
-
+  
     .productos-container {
-        flex-direction: column;  
-        padding: 0; 
+      padding: 0;
     }
-
+  
     .card {
-        width: calc(50% - 10px); 
-        margin-right: 10px; 
-        margin-bottom: 10px; 
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
     }
-
-    .menu-item {
-        display: none; 
-    }
-
-    .menu-icon {
-        display: block; 
-    }
-}
+  }
+  
 
