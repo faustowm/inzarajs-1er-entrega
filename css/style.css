@@ -500,13 +500,26 @@ a:visited {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 479px) {
     .Logo {
         width: 120px; 
     }
 
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px; 
+    }
+
+    .navbar-item {
+        margin-bottom: 10px; 
+    }
+
     .titulongo {
-        font-size: 24px; 
+        font-size: 24px;
+        text-align: center; 
+        margin-bottom: 10px; 
     }
 
     .productos-container {
@@ -515,8 +528,9 @@ a:visited {
     }
 
     .card {
-        width: calc(100% - 20px);  
-        margin-right: 0; 
+        width: calc(50% - 10px); 
+        margin-right: 10px; 
+        margin-bottom: 10px; 
     }
 
     .menu-item {
