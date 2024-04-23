@@ -419,45 +419,6 @@ a:visited {
     color: hsla(312, 100%, 50%, 0.445); 
 }
 
-media screen and (min-width: 769px) {
-    .header {
-        display: flex;
-        justify-content: space-between; 
-        align-items: center;
-    }
-    
-    #velas {
-        display: flex;
-        flex-wrap: wrap; 
-        justify-content: space-around; 
-        
-    }
-    
-    .velas-container {
-        width: calc(33.33% - 20px); 
-        margin-bottom: 20px;
-        box-sizing: border-box; 
-        padding: 0 10px; 
-    }
-    
-    .vela {
-        width: 100%;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-    }
-    
-    .vela img {
-        width: 100%; 
-        height: auto; 
-        border-radius: 5px;
-    }
-    
-}
-
-
 
 @media screen and (min-width: 769px) {
     .header {
@@ -494,8 +455,18 @@ media screen and (min-width: 769px) {
         border-radius: 5px;
     }
     
-}
+    .titulongo {
+        font-size: 40px; 
+    }
 
+    .productos-container {
+        justify-content: space-around;  
+    }
+
+    .card {
+        width: calc(33.33% - 20px);
+    }
+}
 
 
 @media screen and (max-width: 768px) {
@@ -515,11 +486,45 @@ media screen and (min-width: 769px) {
     #carrito .vela {
         width: 100%; 
     }
+
+    .card {
+        width: 150px; 
+    }
+
+    .titulongo {
+        font-size: 24px;
+    }
+
+    .card {
+        width: calc(50% - 20px);
+    }
 }
 
 @media screen and (max-width: 480px) {
     .Logo {
         width: 120px; 
+    }
+
+    .titulongo {
+        font-size: 24px; 
+    }
+
+    .productos-container {
+        flex-direction: column;  
+        padding: 0; 
+    }
+
+    .card {
+        width: calc(100% - 20px);  
+        margin-right: 0; 
+    }
+
+    .menu-item {
+        display: none; 
+    }
+
+    .menu-icon {
+        display: block; 
     }
 }
 
